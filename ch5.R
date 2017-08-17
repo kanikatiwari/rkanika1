@@ -91,9 +91,24 @@ max(x)
 
 ##Propability Functions
 
-?dpqr
+#beta
+?beta
 
+#binomial
+?binom 
+      
+##Character Function
 
+#counting no. of characters
+a="poonam"
+nchar(a)
+
+#substring
+x="abcdefghi"
+substr(x,3,5)
+
+grep("A",c("A",B,"C"))
+     
 summary(rnorm(5))
 ?rnorm
 set.seed(1234)
@@ -194,3 +209,59 @@ for (i in feelings)
        sad = 'cheer up'
        )
   )
+
+
+head(USArrests)
+
+# names of states
+states = rownames(USArrests)
+
+# substr
+substr(x = states, start = 1, stop = 4)
+
+# abbreviate state names
+states2 = abbreviate(states)
+
+# remove vector names (for convenience)
+names(states2) = NULL
+states2
+
+# abbreviate state names with 5 letters
+abbreviate(states, minlength = 5)
+
+#Getting the longest name
+
+# size (in characters) of each name
+state_chars = nchar(states)
+state_chars
+
+# longest name
+states[which(state_chars == max(state_chars))]
+
+#Selecting States
+
+# get states names with 'k'
+grep(pattern = "k", x = states, value = TRUE)
+
+# get states names with 'b'
+grep(pattern = "b", x = states, value = TRUE)
+
+# get states names with 'w'
+grep(pattern = "w", x = states, value = TRUE)
+
+# get states names with 'w' or 'W'
+grep(pattern = "[wW]", x = states, value = TRUE)
+
+#convert the state names to lower case
+x = tolower(states)
+x
+
+#convert to upper case
+x = toupper(states)
+x
+
+#specify the argument ignore.case=TRUE
+
+# get states names with 'w'
+grep(pattern = "w", x = states, value = TRUE, ignore.case = FALSE)
+
