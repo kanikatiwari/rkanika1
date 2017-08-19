@@ -265,3 +265,68 @@ x
 # get states names with 'w'
 grep(pattern = "w", x = states, value = TRUE, ignore.case = FALSE)
 
+# histogram
+hist(nchar(states), main = "Histogram",
+     xlab = "number of characters in US State names")
+
+#distribution of the vowels in the names of the States
+#regexpr()
+
+# position of a's
+positions_a = gregexpr(pattern = "a", text = states, ignore.case = TRUE)
+positions_a
+
+# how many a's?
+num_a = sapply(positions_a, function(x) ifelse(x[1] > 0, length(x), 0))
+num_a
+
+#using the function ; str count() from the package "stringr
+
+# load stringr (remember to install it first)
+#library(stringr)
+
+# total number of a's
+#str_count(states, "a")
+
+# vector of vowels
+vowels = c("a", "e", "i", "o", "u")
+# vector for storing results
+num_vowels = vector(mode = "integer", length = 5)
+str(num_vowels)
+
+#Empty string
+
+# empty string
+empty_str = ""
+
+# display
+empty_str
+
+# class
+class(empty_str)
+
+#Empty character vector
+
+# empty character vector
+empty_chr = character(0)
+
+# display
+empty_chr
+
+# class
+class(empty_chr)
+
+##Notice that the empty string empty str has length 1, 
+##while the empty character vector empty chr has length 0.
+
+# character vector with 5 empty strings
+char_vector = character(5)
+
+# display
+char_vector
+
+char_vector[1]="First"
+length(char_vector)
+char_vector[2]="Second"
+char_vector[3]="Third"
+char_vector[4]="Fourth"
