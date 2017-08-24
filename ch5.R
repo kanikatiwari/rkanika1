@@ -184,7 +184,7 @@ mn2 = strsplit(myname, ' ')
 sapply(mn2, '[',1)
 lname
 
-
+grade
 # for loop
 
 for ( i in 1:10) print(paste('hello', i))
@@ -192,12 +192,15 @@ for ( i in 1:10) print(paste('hello', i))
 for ( i in c(1,5,10)) print(paste('hello', i))
 
 i = 0
-while (i < 10){ print(paste('Hula ', i)) ; i = i+1 }
+while (i < 10){ print(paste('Hello ', i)) ; i = i+1 }
 
-i = 3
-if ( i > 5) print ('i > 5') else print('i < 5')
+i = 10
+while (i > 0){ print('Hello') ; i = i-1 }
 
-ifelse(score > .5, print('Passed'), print('Failed'))
+if ( i > 5) print ('hi') else print('bye')
+
+i = 6
+ifelse(i>5, print('Passed'), print('Failed'))
 
 feelings = c('sad', 'afraid','happy')
 
@@ -209,124 +212,46 @@ for (i in feelings)
        sad = 'cheer up'
        )
   )
+#mystats=function(x, parameteric=T, Print=F)
 
+set.seed(1234)
+x=rnorm(500)
+y=mystats(x)
+y$center
+y$spread
 
-head(USArrests)
+#Transposing
+mtcars
+cars=mtcars[1:5,1:4]
+cars
+t(cars)
 
-# names of states
-states = rownames(USArrests)
+#Aggregating Data
 
-# substr
-substr(x = states, start = 1, stop = 4)
+options(digit=3)
 
-# abbreviate state names
-states2 = abbreviate(states)
+attach(mtcars)
+aggdata=aggregate(mtcars, by=list(cyl,gear), FUN=mean, na.rm=TRUE)
+aggdata
 
-# remove vector names (for convenience)
-names(states2) = NULL
-states2
+#Reshape2
 
-# abbreviate state names with 5 letters
-abbreviate(states, minlength = 5)
+ID=c(1,1,2,2)
+Time=c(1,2,1,2)
+X1=c(5,3,6,2)
+X2=c(6,5,1,4)
+mydata=data.frame(ID,Time,X1,X2, stringsAsFactors = F)
+mydata
 
-#Getting the longest name
+#Melting
 
-# size (in characters) of each name
-state_chars = nchar(states)
-state_chars
+library(reshape2)
+md=melt(mydata,id=c("ID","Time"))
+md
 
-# longest name
-states[which(state_chars == max(state_chars))]
+#casting- dcast
 
-#Selecting States
+newdata=dcast(md,)
 
-# get states names with 'k'
-grep(pattern = "k", x = states, value = TRUE)
-
-# get states names with 'b'
-grep(pattern = "b", x = states, value = TRUE)
-
-# get states names with 'w'
-grep(pattern = "w", x = states, value = TRUE)
-
-# get states names with 'w' or 'W'
-grep(pattern = "[wW]", x = states, value = TRUE)
-
-#convert the state names to lower case
-x = tolower(states)
-x
-
-#convert to upper case
-x = toupper(states)
-x
-
-#specify the argument ignore.case=TRUE
-
-# get states names with 'w'
-grep(pattern = "w", x = states, value = TRUE, ignore.case = FALSE)
-
-# histogram
-hist(nchar(states), main = "Histogram",
-     xlab = "number of characters in US State names")
-
-#distribution of the vowels in the names of the States
-#regexpr()
-
-# position of a's
-positions_a = gregexpr(pattern = "a", text = states, ignore.case = TRUE)
-positions_a
-
-# how many a's?
-num_a = sapply(positions_a, function(x) ifelse(x[1] > 0, length(x), 0))
-num_a
-
-#using the function ; str count() from the package "stringr
-
-# load stringr (remember to install it first)
-#library(stringr)
-
-# total number of a's
-#str_count(states, "a")
-
-# vector of vowels
-vowels = c("a", "e", "i", "o", "u")
-# vector for storing results
-num_vowels = vector(mode = "integer", length = 5)
-str(num_vowels)
-
-#Empty string
-
-# empty string
-empty_str = ""
-
-# display
-empty_str
-
-# class
-class(empty_str)
-
-#Empty character vector
-
-# empty character vector
-empty_chr = character(0)
-
-# display
-empty_chr
-
-# class
-class(empty_chr)
-
-##Notice that the empty string empty str has length 1, 
-##while the empty character vector empty chr has length 0.
-
-# character vector with 5 empty strings
-char_vector = character(5)
-
-# display
-char_vector
-
-char_vector[1]="First"
-length(char_vector)
-char_vector[2]="Second"
-char_vector[3]="Third"
-char_vector[4]="Fourth"
+?IQR
+?lm
