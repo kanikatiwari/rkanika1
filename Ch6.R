@@ -84,7 +84,7 @@ barplot(counts,
 
 attach(Arthritis)
 counts=table(Treatment,Improved)
-spine(counts,main="spinogram example")
+spine(counts,main="spinogram example", col=rainbow(3))
 
 #Fan Plot
 
