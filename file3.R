@@ -12,7 +12,7 @@ plot(mpg,disp)
 detach(mtcars)
 mpg
 
-mba=read.csv(file='mba.csv')
+mba=read.csv(file='mba1.csv')
 mba
 str(mba)
 mba2=data.frame(mba$rollno,mba$name, mba$gender, mba$course, mba$mobile)
