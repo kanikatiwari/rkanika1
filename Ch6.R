@@ -65,3 +65,31 @@ hist(j, col=rainbow (7),xlab='Marks', ylab='No.of Students', main='Result')
 text(10,5,'a',pos=4)
 mid=Marks/2
 mid
+
+#Tweaking Bar Plot
+
+library(vcd)
+Arthritis
+par(mar=c(5,8,4,2))
+par(las=2)
+counts=table(Arthritis$Improved)
+barplot(counts,
+        main="Treatment Outcomes",
+        horiz=TRUE,
+        cex.names=0.8,
+        names.arg=c("No Improvement","Some Improvement","Marked Improvement"),
+        col=rainbow(3))
+
+#Spinogram
+
+attach(Arthritis)
+counts=table(Treatment,Improved)
+spine(counts,main="spinogram example")
+
+#Fan Plot
+
+library(plotrix)
+slices=c(10,12,4,16,8)
+lbls=c('US','UK','Australia','Germany','France')
+fan.plot(slices,labels=lbls,main="Fan Plot")
+
