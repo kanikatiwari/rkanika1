@@ -130,6 +130,32 @@ mytable=table(state.region)
 lbls3=paste(names(mytable),"\n", mytable, sep="")
 pie(mytable, labels=lbls3, main="Pie chart from a table\n(with sample sizes)")
 
+#KernelDensity Plots
 
+X=c(1,2,3,6,5,4,6,7,8,3,6,5,4,3,7,8,2)
+plot(density(x))
 
+par(mfrow=c(2,1))
+d=density(x)
+d
+hist(d)
+par(mfrow=c(1,1))
+
+#density plot
+d=density(x)
+plot(d,main="Kernal Density plot")
+#polygon
+polygon(d, col="red", border="yellow")
+
+#Comparative Kernal Density Plot
+
+library(sm)
+attach(mtcars)
+cyl.f=factor(cyl, levels=c(4,6,8),
+             labels=c("4 cylinders","6 cylinders","8 cylinders"))
+sm.density.compare(mpg, cyl,xlab="Miles Per Gallon")
+title(main="MPG distribution by Car Cylinders")
+colfill=c(2:(1+length(levels(cyl.f))))
+legend(locator(1), levels(cyl.f), fill=colfill)
+detach(mtcars)
 
