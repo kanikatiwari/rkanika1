@@ -114,3 +114,45 @@ cbind(mpg, wt, fitted(cars.lm))
 cbind(mpg, wt, fitted(cars.lm), wt-fitted(cars.lm), residuals(cars.lm))
 
 ?lm
+
+#multilinear regression
+attach(mtcars)
+fit=lm(mpg~hp+wt+hp:wt, data=mtcars)
+summary(fit)
+library(effects)
+#plot(effect(term, mod,xlevels), multiline="T")
+plot(effect("hp:wt",fit,,list(wt=c(2,2,3.2,4.2))), multiline=T)
+plot(effect("hp:wt",fit,,list(wt=c(2,2,3.2,4.2))), multiline=F)
+?smoother.arg
+
+x=lm(weight~height, data=women)
+par(mfrow=c(2,2))
+plot(x)
+
+x2=lm(weight~ height+I(height^2), data=women)
+par(mfrow=c(2,2))
+plot(x2)
+
+#Enhanced approach
+
+#QQplot
+library(car)
+states=as.data.frame(state.x77[,c("Murder","Population","Illiteracy","Income","Frost")])
+states
+fit=lm(Murder ~ Population + Illiteracy + Income + Frost, data=states)
+qqPlot(fit, labels= row.names(states), id.method="y", simulate=T, main="Q-Q Plot")
+states["Nevada",]
+fitted(fit)["Nevada"]
+residuals(fit)["Nevada"]
+rstudent(fit)["Nevada"]
+?qqPlot
+
+#Durbin Watson test
+durbinWatsonTest(fit)
+
+#Linearity
+crPlots(fit)
+
+#Homoscedasticity
+library(car)
+ncvtest(fit)
