@@ -129,3 +129,23 @@ text(k, paste(k,1:50, collapse = '-'), cex=.5, col='red')
 paste(1:50,1:50,  sep=',', collapse = ':')
 ?paste
 paste0('(',1:50,'-',1:50,')')
+
+#practice 2
+
+?apply
+?sapply
+
+x=matrix(1:14, nrow=7, byrow=F)
+x
+apply(x, 1, mean)
+cbind(x,mean=apply(x, 1, mean))
+lapply(x, sum)
+
+attach(women)
+sapply(split(women$height), mean)
+sapply(split(mtcars$mpg, mtcars$cyl), var)
+lapply(split(mtcars$mpg, mtcars$cyl), var
+tapply(split(mtcars$mpg, mtcars$cyl), var)
+vapply(mtcars, FUN=fivenum, FUN.VALUE = c(min=0, 1st Qu, Median, 3rd Qu, Max))
+tapply(X=mtcars$mpg, INDEX = mtcars$cyl, mean)
+       
